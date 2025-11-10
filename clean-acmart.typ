@@ -185,7 +185,7 @@
 ]
 
 // Display the authors list.
-#let acmart-authors(authors, ncols: 5) = {
+#let acmart-authors(authors, ncols) = {
   let author(author) = {
     set align(center)
     text(
@@ -210,7 +210,7 @@
 }
 
 // Display the affiliations.
-#let acmart-affiliations(affiliations, ncols: 3) = {
+#let acmart-affiliations(affiliations, ncols) = {
   let affiliation(affiliation) = {
     set align(center)
     affiliation.remove("mark", default: []) + affiliation.remove("name")
@@ -254,6 +254,9 @@
   //   ),
   // ),
   affiliations: (),
+  // control max number of columns for authors and affiliation
+  ncols-authors: 3,
+  ncols-affiliations: 3,
 
   keywords: (
     "Virtual machine",
@@ -401,8 +404,8 @@
       v(.5em) + text(size: 1.2em, [Submission: #review])
     } else {
       // Display authors and affiliaitons instead
-      v(.5em) + acmart-authors(authors)   
-      v(.5em) + acmart-affiliations(affiliations)
+      v(.5em) + acmart-authors(authors, ncols-authors)
+      v(.5em) + acmart-affiliations(affiliations, ncols-affiliations)
     }
   })
   

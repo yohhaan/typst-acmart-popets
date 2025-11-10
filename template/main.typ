@@ -73,6 +73,9 @@
   title: title,
   authors: authors,
   affiliations: affiliations,
+  // control max number of columns for authors and affiliation
+  ncols-authors: 3,
+  ncols-affiliations: 3,
   conference: conference,
   doi: doi,
   copyright: "cc",

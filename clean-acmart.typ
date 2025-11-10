@@ -1,6 +1,9 @@
 // MIT License
 //
-// Copyright (c) 2023-2025 Junliang HU <jlhu@cse.cuhk.edu.hk>
+// Copyright (c) for portions of https://github.com/yohhaan/typst-acmart-popets are
+// held by Junliang Hu, 2023-2025 as part of https://github.com/vtta/clean-acmart
+// All other copyright (c) for https://github.com/yohhaan/typst-acmart-popets are
+// held by Yohan Beugin, 2025
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal

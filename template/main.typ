@@ -1,27 +1,21 @@
-#import "@preview/clean-acmart:0.0.1": acmart, acmart-ccs, acmart-keywords, acmart-ref, to-string
+#import "../clean-acmart.typ": acmart, acmart-keywords, to-string
 
 #let cuhk = super(sym.suit.spade)
 
 #let title = [
-  Insert Your Title Here∗
+  Insert Your Title Here
 ]
 #let authors = (
   // You can use grouped affiliations with mark
   (
-    name: [Junliang Hu],
-    email: [jlhu\@cse.cuhk.edu.hk],
+    name: [#link("orcid")[Author1 Name]],
+    email: [#link("email1@email.com")[email1\@email.com]],
     mark: cuhk,
   ),
   (
     // Should I use string or content? It doesn't matter
-    name: "FirstName1 Surname1",
-    email: "email1@email.com",
-    mark: super(sym.suit.diamond),
-  ),
-  (
-    // Should I use string or content? It doesn't matter
-    name: "FirstName2 Surname2",
-    email: "email2@email.com",
+    name: [#link("orcid")[Author2 Name]],
+    email: [#link("email2@email.com")[email2\@email.com]],
     mark: super(sym.suit.diamond),
   ),
   // Or you can put affiliations directly in the author list
@@ -29,18 +23,18 @@
   //   name: [FirstName Surname],
   //   email: [email\@email.com],
   //   // You can put any thing here, and they will automatically be appended below the author name
-  //   department: [Department of Computer Science and Engineering],
-  //   institute: [The Chinese University of Hong Kong],
-  //   city: [Hong Kong],
+  //   department: [Department Name],
+  //   institute: [University Name],
+  //   city: [City],
   // ),
 )
 #let affiliations = (
   (
-    name: [The Chinese University of Hong Kong],
+    name: [University Name],
     mark: cuhk,
-    department: [Department of Computer Science and Engineering],
+    department: [Department Name],
     // You can put any thing here, and they will automatically be appended below
-    // city: [Hong Kong],
+    // city: [City],
   ),
   (
     name: [Institution/University Name],
@@ -50,24 +44,12 @@
   // More affiliations
 )
 #let conference = (
-  name:  [ACM SIGOPS 31th Symposium on Operating Systems Principles],
-  short: [SOSP ’25],
-  year:  [2025],
-  date:  [October 13–16],
-  venue: [Seoul, Republic of Korea],
+  name: [Proceedings on Privacy Enhancing Technologies],
+  year: [YYYY(X)],
 )
-#let doi = "https://doi.org/10.1145/0000000000"
-#let ccs = (
-  (
-    generic: [Software and its engineering],
-    specific: ([Virtual machines], [Virtual memory], ),
-  ),
-  (
-    generic: [Computer systems organization],
-    specific: ([Heterogeneous (hybrid) systems], ),
-  ),
-)
-#let keywords = ("Virtual machine", "Virtual memory", "Operating system", )
+
+#let doi = "https://doi.org/10.56553/popets-YYYY-XXXX"
+#let keywords = ("Keyword1", "Keyword2", "Keyword3")
 
 #show: acmart.with(
   title: title,
@@ -78,19 +60,18 @@
   ncols-affiliations: 3,
   conference: conference,
   doi: doi,
-  copyright: "cc",
   // Set review to submission ID for the review process or to "none" for the final version.
   // review: [\#001],
 )
 
+// Uncomment the following if you want red line numbers in pdf margin
+// #set par.line(numbering: n => text(red)[#n])
 
 = Abstract
 The process of scientific writing is often tangled up with the intricacies of typesetting, leading to frustration and wasted time for researchers. In this paper, we introduce Typst, a new typesetting system designed specifically for scientific writing.
 Typst untangles the typesetting process, allowing researchers to compose papers faster. In a series of experiments we demonstrate that Typst offers several advantages, including faster document creation, simplified syntax, and increased ease-of-use.
 
-#acmart-ccs(ccs)
 #acmart-keywords(keywords)
-#acmart-ref(to-string(title), authors, conference, doi)
 
 = Introduction
 Scientific writing is a crucial part of the research process, allowing researchers to share their findings with the wider scientific community. However, the process of typesetting scientific documents can often be a frustrating and time-consuming affair, particularly when using outdated tools such as LaTeX. Despite being over 30 years old, it remains a popular choice for scientific writing due to its power and flexibility. However, it also comes with a steep learning curve, complex syntax, and long compile times, leading to frustration and despair for many researchers @netwok2020 @netwok2022.
@@ -115,7 +96,7 @@ $ a + b = gamma $ <eq:gamma>
 #figure(
   placement: none,
   circle(radius: 15pt),
-  caption: [A circle representing the Sun.]
+  caption: [A circle representing the Sun.],
 ) <fig:sun>
 
 In @fig:sun you can see a common representation of the Sun, which is a star that is located at the center of the solar system.
@@ -132,7 +113,7 @@ In @fig:sun you can see a common representation of the Sun, which is a star that
     align: (left, right),
     inset: (x: 8pt, y: 4pt),
     stroke: (x, y) => if y <= 1 { (top: 0.5pt) },
-    fill: (x, y) => if y > 0 and calc.rem(y, 2) == 0  { rgb("#efefef") },
+    fill: (x, y) => if y > 0 and calc.rem(y, 2) == 0 { rgb("#efefef") },
 
     table.header[Planet][Distance (million km)],
     [Mercury], [57.9],
@@ -143,7 +124,7 @@ In @fig:sun you can see a common representation of the Sun, which is a star that
     [Saturn], [1,433.5],
     [Uranus], [2,872.5],
     [Neptune], [4,495.1],
-  )
+  ),
 ) <tab:planets>
 
 In @tab:planets, you see the planets of the solar system and their average distance from the Sun.
